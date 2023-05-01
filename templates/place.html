@@ -6,7 +6,7 @@
     {{ form.hidden_tag() }}
     <p>
         {{ form.name.label }}<br>
-        {{ form.name(class="form-control") }}<br>
+        {{ form.name(class="form-control", autocomplete="off") }}<br>
         {% for error in form.name.errors %}
     <div class="alert alert-danger" role="alert">
         {{ error }}
@@ -15,7 +15,7 @@
     </p>
     <p>
         {{ form.address.label }}<br>
-        {{ form.address(class="form-control") }}<br>
+        {{ form.address(class="form-control", autocomplete="off") }}<br>
         {% for error in form.address.errors %}
     <div class="alert alert-danger" role="alert">
         {{ error }}
@@ -31,6 +31,9 @@
     </div>
     {% endfor %}
     </p>    
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}  {% if id > 0 %} <a href="/del/{{id}}" class="btn btn-secondary">Удалить</a> {% endif %}</p>
 </form>
+<p>
+{% if id > 0 and form.address.data != '' %} <img src="/map/{{id}}">{% endif %}
+</p>
 {% endblock %}
